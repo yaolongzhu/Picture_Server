@@ -19,6 +19,11 @@ function splitStr(str, reps)
     return r;
 end
 
+function file_exists(name)
+    local f = io.open(name, "r")
+    if f ~= nil then io.close(f) return true else return false end
+end
+
 
 --srcStr = "/thumbnails/aergegre/test.jpg/resize,w_200,h_300"
 --splitByStr = ","
@@ -34,5 +39,6 @@ end
 
 M.printToNG = printToNG
 M.splitStr = splitStr
+M.file_exists = file_exists
 return M
 
