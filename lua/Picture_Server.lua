@@ -36,6 +36,7 @@ resize_url = resize_url .. resize_pic_name
 --缩略图存在
 --返回
 if (Utils.file_exists(resize_full_path)) then
+    ngx.log(ngx.INFO, resize_full_path .. "存在，直接返回")
     ngx.req.set_uri(resize_url);
     ngx.exit(ngx.OK);
 end
@@ -57,8 +58,9 @@ end
 
 if(width~=nil and length~=nil) then
     cmd = gm_path .. " convert -resize " .. width .. "x" .. width .. " " .. origial_full_path .. " " .. resize_full_path
-    ngx.log(ngx.STDERR, cmd)
+    ngx.log(ngx.INFO, "执行命令" .. cmd)
     os.execute(cmd);
+    ngx.log(ngx.INFO, "执行结束，返回" .. resize_url)
     ngx.req.set_uri(resize_url);
     ngx.exit(ngx.OK);
 end
