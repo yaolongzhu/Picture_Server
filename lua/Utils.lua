@@ -1,10 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: yaolongzhu
--- Date: 28/6/19
--- Time: 11:28 AM
--- To change this template use File | Settings | File Templates.
---
 
 local M={};
 
@@ -24,6 +17,10 @@ function file_exists(name)
     if f ~= nil then io.close(f) return true else return false end
 end
 
+function create_directory(directory)
+    local cmd = "mkdir -p " .. directory
+    os.execute(cmd)
+end
 
 --srcStr = "/thumbnails/aergegre/test.jpg/resize,w_200,h_300"
 --splitByStr = ","
@@ -37,8 +34,10 @@ end
 
 --print(string.sub(srcStr, 0, string.len(srcStr)-findLastIndex(srcStr, "/")))
 
+
 M.printToNG = printToNG
 M.splitStr = splitStr
 M.file_exists = file_exists
+M.create_directory = create_directory
 return M
 
